@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BEN E NIC Músicas Bíblicas</title>
+    <title>BEN & NIC Músicas Bíblicas</title>
     <!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KJ7QLB64');</script><!-- End Google Tag Manager -->
     
     <!-- Google Fonts: Fredoka -->
@@ -142,7 +142,6 @@
             transition: background 0.4s ease;
         }
 
-        /* HIGHLIGHTING DE TEXTO BUSCADO */
         mark.highlight {
             background-color: var(--highlight-bg);
             color: var(--highlight-color);
@@ -152,34 +151,32 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* --- ESTILIZAÇÃO DO BANNER DO TOPO --- */
-            .topo-criancas-banner {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 100%;
-                padding: 10px 0;
-            }
+        .topo-criancas-banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 10px 0;
+        }
 
+        .imagem-topo-centralizada {
+            max-height: 250px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+            animation: flutuar 3s ease-in-out infinite alternate;
+        }
+
+        @media (max-width: 768px) {
             .imagem-topo-centralizada {
-                max-height: 250px; /* Altura padrão para computadores/tablets */
-                width: auto;
-                object-fit: contain;
-                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-                animation: flutuar 3s ease-in-out infinite alternate;
+                max-height: 140px;
             }
+        }
 
-            /* Reduz o banner automaticamente em celulares e telas menores */
-            @media (max-width: 768px) {
-                .imagem-topo-centralizada {
-                    max-height: 140px; /* Altura reduzida para celulares */
-                }
-            }
-
-            @keyframes flutuar {
-                0% { transform: translateY(0); }
-                100% { transform: translateY(-6px); }
-            }
+        @keyframes flutuar {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-6px); }
+        }
 
         .top-navbar {
             background: var(--navbar-bg);
@@ -586,15 +583,11 @@
             gap: 20px;
         }
 
-        @media (min-width: 992px) {
-            .sidebar-leitura {
-                position: sticky;
-                top: 90px;
-            }
-        }
-
         .youtube-wrapper {
             width: 100%;
+            position: relative;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
         }
 
         .youtube-container {
@@ -619,19 +612,26 @@
             border: 0;
         }
 
-        @media (max-width: 991px) {
-            .youtube-wrapper.flutuante {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 300px;
-                z-index: 9999;
-                animation: surgirFlutuante 0.3s ease;
-            }
-            .youtube-wrapper.flutuante .youtube-container {
-                box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-                border: 4px solid var(--card-border);
-            }
+        /* Modo Flutuante ativado dinamicamente ao rolar a página */
+        .youtube-wrapper.flutuante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            z-index: 9999;
+            margin-bottom: 0;
+            animation: surgirFlutuante 0.3s ease;
+        }
+        
+        .youtube-wrapper.flutuante .youtube-container {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            border: 4px solid var(--card-border);
+        }
+        
+        .youtube-wrapper.flutuante .btn-fechar-video { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
         }
 
         .btn-fechar-video {
@@ -649,17 +649,44 @@
             cursor: pointer;
             z-index: 10000;
             font-size: 0.9rem;
-        }
-
-        .youtube-wrapper.flutuante .btn-fechar-video { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         @keyframes surgirFlutuante {
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Botões de Ação do Vídeo */
+        .acoes-video-container {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-acao-video {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: inline-block;
+            transition: transform 0.1s;
+        }
+
+        .btn-acao-video:hover {
+            filter: brightness(1.1);
+            transform: scale(1.02);
+        }
+
+        .youtube-wrapper.fixo-relative .btn-ativar-flutuante {
+            display: inline-block;
         }
 
         .trilha-capitulos {
@@ -783,6 +810,7 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KJ7QLB64" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
     <!-- BANNER CENTRALIZADO COM AS CRIANÇAS NO TOPO -->
     <div class="topo-criancas-banner">
         <img src="banner.png" alt="BEN & NIC" class="imagem-topo-centralizada">
@@ -816,7 +844,7 @@
         <div class="secao-temas">
             <h4>Escolha o Tema:</h4>
             <div class="grid-temas">
-                <button class="btn-tema" onclick="mudarTema('azul')" id="btn-tema-azul">Clássico</button>
+                <button class="btn-tema ativo-tema" onclick="mudarTema('azul')" id="btn-tema-azul">Clássico</button>
                 <button class="btn-tema" onclick="mudarTema('sol')" id="btn-tema-sol">Sol</button>
                 <button class="btn-tema" onclick="mudarTema('morango')" id="btn-tema-morango">Morango</button>
                 <button class="btn-tema" onclick="mudarTema('floresta')" id="btn-tema-floresta">Floresta</button>
@@ -846,10 +874,9 @@
         let db = null;
         let dadosMusicas = [];
         let dadosLivros = [];
-        let videoMinimizado = false;
+        let videoFixadoNoConteudo = false; 
+        let videoExpandido = false;
         let termoBuscaAtual = "";
-
-        /* --- FUNÇÕES UTILITÁRIAS --- */
 
         function escapeHtml(string) {
             if (!string) return '';
@@ -861,7 +888,6 @@
                 .replace(/'/g, "&#039;");
         }
 
-        // Função responsável por envolver o termo pesquisado com a tag <mark>
         function highlightText(texto, termo) {
             const textoEscapado = escapeHtml(texto);
             if (!termo || !termo.trim()) return textoEscapado;
@@ -931,8 +957,6 @@
                 toast.classList.remove('visivel');
             }, 3000);
         }
-
-        /* --- INICIALIZAÇÃO DO BANCO --- */
 
         initSqlJs({
             locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
@@ -1070,9 +1094,12 @@
             if (!wrapper) return;
 
             window.onscroll = function() {
-                if (videoMinimizado) return;
-                if (window.innerWidth < 992 && window.scrollY > 250) {
+                // Se o vídeo estiver expandido no conteúdo ou fixado, não flutua ao rolar
+                if (videoFixadoNoConteudo || videoExpandido) return;
+
+                if (window.scrollY > 250) {
                     wrapper.classList.add('flutuante');
+                    wrapper.classList.remove('fixo-relative');
                 } else {
                     wrapper.classList.remove('flutuante');
                 }
@@ -1080,12 +1107,59 @@
         }
 
         function fecharVideoFlutuante() {
-            videoMinimizado = true;
+            if (videoExpandido) {
+                alternarExpandirVideo();
+                return;
+            }
+            videoFixadoNoConteudo = true;
             const wrapper = document.getElementById('youtubeWrapper');
-            if (wrapper) wrapper.style.display = 'none';
+            if (wrapper) {
+                wrapper.classList.remove('flutuante');
+                wrapper.classList.add('fixo-relative');
+            }
         }
 
-        /* --- VISUALIZAÇÕES E NAVEGAÇÃO --- */
+        function reativarFlutuante() {
+            if (videoExpandido) {
+                alternarExpandirVideo();
+            }
+            videoFixadoNoConteudo = false;
+            const wrapper = document.getElementById('youtubeWrapper');
+            if (wrapper) {
+                wrapper.classList.remove('fixo-relative');
+                if (window.scrollY > 250) {
+                    wrapper.classList.add('flutuante');
+                }
+            }
+        }
+
+        // Mova fisicamente o wrapper do vídeo entre o card do conteúdo principal e o sidebar
+        function alternarExpandirVideo() {
+            videoExpandido = !videoExpandido;
+            const wrapper = document.getElementById('youtubeWrapper');
+            const slotMain = document.getElementById('slotVideoExpandido');
+            const slotSidebar = document.getElementById('slotVideoSidebar');
+
+            if (!wrapper || !slotMain || !slotSidebar) return;
+
+            if (videoExpandido) {
+                // Move para o slot no conteúdo principal (fica grande sobre a letra)
+                slotMain.appendChild(wrapper);
+                wrapper.classList.remove('flutuante');
+            } else {
+                // Retorna para a barra lateral
+                slotSidebar.prepend(wrapper);
+            }
+            
+            atualizarTextoBotaoExpandir();
+        }
+
+        function atualizarTextoBotaoExpandir() {
+            const btn = document.getElementById('btnExpandirTexto');
+            if (btn) {
+                btn.innerText = videoExpandido ? "_ Minimizar Vídeo" : "⛶ Expandir Vídeo";
+            }
+        }
 
         function mostrarListaLivros(atualizarUrl = true) {
             window.onscroll = null;
@@ -1151,7 +1225,8 @@
         }
 
         function abrirMusica(id, atualizarUrl = true) {
-            videoMinimizado = false;
+            videoFixadoNoConteudo = false;
+            videoExpandido = false;
             const m = dadosMusicas.find(item => item.id === id);
             if (!m) return;
 
@@ -1168,9 +1243,13 @@
             if (ytId) {
                 widgetYoutube = `
                     <div class="youtube-wrapper" id="youtubeWrapper">
-                        <button class="btn-fechar-video" onclick="fecharVideoFlutuante()" title="Minimizar">✕</button>
+                        <button class="btn-fechar-video" onclick="fecharVideoFlutuante()" title="Minimizar / Voltar">✕</button>
                         <div class="youtube-container">
                             <iframe src="https://www.youtube.com/embed/${ytId}" title="Vídeo do YouTube" allowfullscreen></iframe>
+                        </div>
+                        <div class="acoes-video-container">
+                            <button class="btn-acao-video" id="btnExpandirTexto" onclick="alternarExpandirVideo()">⛶ Expandir Vídeo</button>
+                            <button class="btn-acao-video btn-ativar-flutuante" onclick="reativarFlutuante()">- Tornar Flutuante</button>
                         </div>
                     </div>
                 `;
@@ -1187,7 +1266,6 @@
                 `;
             });
 
-            // Aplica highlight na leitura caso haja busca ativa
             const tituloDestaque = highlightText(m.titulo, termoBuscaAtual);
             const conteudoDestaque = highlightText(m.conteudo, termoBuscaAtual);
             const tituloEscapadoSeguro = escapeHtml(m.titulo).replace(/'/g, "\\'");
@@ -1202,11 +1280,13 @@
                     <div class="card-conteudo">
                         <h2 style="font-size: 2.2rem; margin-bottom: 20px;">${tituloDestaque}</h2>
                         
+                        <!-- SLOT ONDE O VÍDEO É MOVIDO QUANDO O USUÁRIO CLICA EM EXPANDIR -->
+                        <div id="slotVideoExpandido"></div>
+
                         <div class="letra-caixa">
                             <pre class="letra-formatada">${conteudoDestaque}</pre>
                         </div>
 
-                        <!-- BOTOES DE NAVEGACAO PROXIMO / ANTERIOR -->
                         <div class="navegacao-leitura">
                             <button class="btn-nav-capitulo" ${idAnterior ? `onclick="abrirMusica(${idAnterior})"` : 'disabled'}>
                                 ⬅ Anterior
@@ -1217,8 +1297,11 @@
                         </div>
                     </div>
 
-                    <div class="sidebar-leitura">
-                        ${widgetYoutube}
+                    <div class="sidebar-leitura" id="sidebarLeitura">
+                        <!-- SLOT PADRÃO DO VÍDEO NA BARRA LATERAL -->
+                        <div id="slotVideoSidebar">
+                            ${widgetYoutube}
+                        </div>
 
                         <div class="trilha-capitulos">
                             <h4>Outros Capítulos:</h4>
@@ -1234,8 +1317,6 @@
             window.scrollTo(0, 0);
             setTimeout(configurarScrollVideo, 100);
         }
-
-        /* --- FILTRO E PESQUISA --- */
 
         function filtrarMusicas() {
             window.onscroll = null;
@@ -1263,7 +1344,6 @@
                 resultados.forEach(m => {
                     const tituloComHighlight = highlightText(m.titulo, termo);
                     
-                    // Extrai preview do trecho onde o termo se encontra (se estiver na letra)
                     let previewTexto = m.conteudo;
                     const indexTermo = m.conteudo.toLowerCase().indexOf(termoLower);
                     if (indexTermo > 30) {
